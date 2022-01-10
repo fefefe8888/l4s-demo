@@ -69,6 +69,10 @@ variable "attacker_machine_name" {
 
 resource "aws_default_security_group" "default" {
   vpc_id = aws_vpc.vpc1.id
+
+  tags = {
+    Name = "default SG"
+  }
 }
 
 # Enable VPC flow log
@@ -99,6 +103,10 @@ resource "aws_s3_bucket" "vpc_flow_log" {
         sse_algorithm = "aws:kms"
       }
     }
+  }
+
+  tags {
+    Name = "S3 for flow log"
   }
 }
 

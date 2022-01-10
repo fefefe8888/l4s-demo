@@ -69,10 +69,6 @@ variable "attacker_machine_name" {
 
 resource "aws_default_security_group" "default" {
   vpc_id = aws_vpc.vpc1.id
-
-  tags = {
-    Name = "default SG"
-  }
 }
 
 # Enable VPC flow log

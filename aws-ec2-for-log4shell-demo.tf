@@ -181,6 +181,14 @@ resource "aws_subnet" "subnet-2" {
   availability_zone = format("%sb", var.aws_region)
 }
 
+# Create subnet
+
+resource "aws_subnet" "subnet-3" {
+  vpc_id            = aws_vpc.vpc1.id
+  cidr_block        = "10.0.2.0/24"
+  availability_zone = format("%sc", var.aws_region)
+}
+
 # Create Internet GW
 
 resource "aws_internet_gateway" "igw" {

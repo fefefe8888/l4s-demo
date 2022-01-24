@@ -87,7 +87,6 @@ resource "aws_flow_log" "vpc_flow_log" {
 # Create S3 bucket for storing flow log
 
 resource "aws_s3_bucket" "vpc_flow_log" {
-  # checkov:skip=CKV_AWS_144: replication not required
   bucket = var.flow_log_bucket_name
   force_destroy = "true"
   versioning {
@@ -120,8 +119,6 @@ resource "aws_s3_bucket_public_access_block" "vpc_flow_log" {
 # Create S3 bucket for S3 access logging
 
 resource "aws_s3_bucket" "s3_access_log" {
-  # checkov:skip=CKV_AWS_144: replication not required
-  # checkov:skip=CKV_AWS_18: This bucket is for storing S3 bucket access log
   bucket = var.s3_access_log_bucket_name
   force_destroy = "true"
   versioning {
@@ -235,8 +232,6 @@ resource "aws_security_group" "allow-ssh-web" {
 # Create Ubuntu EC2
 
 resource "aws_instance" "web-server" {
-	# checkov:skip=CKV_AWS_88: public IP required by web server
-  # checkov:skip=CKV_AWS_135: EBS optimization not supported by instance type
   ami               = var.ec2_ami
   instance_type     = var.ec2_instance_type
   key_name          = var.ec2_key_pair_name
